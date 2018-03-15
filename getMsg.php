@@ -1,26 +1,23 @@
 <?php   
 //连接数据库   
-header('Content-Type: text/xml');
 error_reporting(E_ALL ^ E_DEPRECATED);
-require_once("mysqldb.php");    
-$con=Mysqldb::getINStance()->connect(); 
+require_once("model/mysqldb.php");
+
 $id=$_GET['maxid'];
-//echo $id;return;
+$con=Mysqldb::getINStance()->connect();
 $sql="SELECT * FROM chatinfo WHERE chat_id>'{$id}'";
-mysql_query("SET NAMES 'utf8'");
-$result=mysql_query($sql,$con);
-$xml="<?xml version='1.0' encoding='UTF-8'?>\n";  
-$xml=$xml."<response>\n";
-while($row = mysql_fetch_array($result))
+$con->query("\"SET NAMES 'utf8'\"");
+$result=$con->query($sql);
+
+while($row = $result->fetch_assoc())
  {
- 	$xml=$xml."<msg>\n";
- 	$xml=$xml."<chatid>".$row['chat_id']."</chatid>\n";
- 	$xml=$xml."<user>".$row['spk_name']."</user>\n";
- 	$xml=$xml."<ip>".$row['IP']."</ip>\n";
- 	$xml=$xml."<content>".$row['content']."</content>\n";
- 	$xml=$xml."<createtime>".$row['createtime']."</createtime>\n";
- 	$xml=$xml."</msg>\n";
+ 	$response [] = (object)[
+ 		'chat_id' => $row['chat_id'],
+        'user_id' => $row['user_id'],
+		'IP' => $row['IP'],
+		'content' => $row['content'],
+		'createtime' => $row['createtime']
+	];
  }
-$xml=$xml."</response>";
-echo $xml;
-?> 
+ echo json_encode($response);
+?>

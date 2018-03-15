@@ -8,7 +8,7 @@ class MysqlDb
     private $_dbConfig = array(
         'host' => '127.0.0.1',
         'user' => 'root',
-        'password' => '',
+        'password' => '123123',
         'database' => 'chatroom'
     );//数据库配置参数
 

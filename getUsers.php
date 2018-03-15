@@ -2,35 +2,37 @@
 //连接数据库
 session_start();
 $username=$_GET['username'];  
-header('Content-Type: text/xml');
 error_reporting(E_ALL ^ E_DEPRECATED);
-require_once("mysqldb.php");    
+require_once("model/mysqldb.php");
 $con=Mysqldb::getINStance()->connect(); 
-$sql="SELECT * FROM usersonline WHERE theip='{$_SERVER['REMOTE_ADDR']}' AND username='{$username}'";
-mysql_query("SET NAMES 'utf8'");
-$result=mysql_query($sql,$con);
-if(mysql_num_rows($result)){
+$sql="SELECT * FROM usersonline WHERE username='{$username}'";
+$con->query("SET NAMES 'utf8'");
+$result=$con->query($sql);
+if($result->num_rows){
 	$sql="UPDATE usersonline SET lasttime=now() WHERE theip='{$_SERVER['REMOTE_ADDR']}' AND username='{$username}'";
-	mysql_query($sql,$con);
+	$con->query($sql);
 }else{
-	$sql="INSERT INTO usersonline(username,theip,lasttime) VALUES('{$username}','{$_SERVER['REMOTE_ADDR']}',now())"; 
-	mysql_query($sql,$con);
+	$sql="INSERT INTO usersonline(username,theip,lasttime) VALUES('{$username}','{$_SERVER['REMOTE_ADDR']}',now())";
+    $con->query($sql);
 }
-$sql="DELETE FROM usersonline WHERE TIME_TO_SEC(now())-TIME_TO_SEC(lastTime)>10"; 
-mysql_query($sql,$con);
+$sql="DELETE FROM usersonline WHERE TIME_TO_SEC(now())-TIME_TO_SEC(lastTime)>10";
+$con->query($sql);
 ob_clean();
 $sql="SELECT * FROM usersonline";
-$result=mysql_query($sql,$con);
-$xml="<?xml version='1.0' encoding='UTF-8'?>\n";  
-$xml=$xml."<users>\n";
-while($row = mysql_fetch_array($result))
+$result=$con->query($sql);
+
+while($row = $result->fetch_assoc())
  {
- 	$xml=$xml."<user>\n";
- 	$xml=$xml."<username>".$row['username']."</username>\n";
- 	$xml=$xml."<theip>".$row['theip']."</theip>\n";
- 	$xml=$xml."<lasttime>".$row['lasttime']."</lasttime>\n";
- 	$xml=$xml."</user>\n";
+ 	var_dump($row);
+ 	$response [] = (object) [
+ 		'id' => $row['id'],
+		'username' => $row['username'],
+		'theip' => $row['theip'],
+		'lasttime' => $row['lasttime']
+
+	];
  }
-$xml=$xml."</users>";
-echo $xml;
+
+ echo json_encode($response);
+
 ?> 

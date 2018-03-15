@@ -38,7 +38,7 @@ CREATE TABLE `chatinfo` (
   `user_id` int(11) NOT NULL,
   `IP` varchar(15) NOT NULL,
   `content` text NOT NULL,
-  `createtime` varchar(20) NOT NULL,
+  `createtime` varchar(30) NOT NULL,
   PRIMARY KEY (`chat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 

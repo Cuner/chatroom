@@ -1,30 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">   
-<html xmlns="http://www.w3.org/1999/xhtml">   
-<head>   
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
-<title>欢迎使用AJAX聊天室</title>   
-</head>   
-  
-<body>   
-<form action="chatindex.php" name="form1" method="post">   
-<table width="400" border="1" align="center">   
-  <tr>   
-    <th height="52" colspan="2" scope="col">欢迎使用AJAX聊天室</th>   
-  </tr>   
-  <tr>   
-    <td width="107">用户名：</td>   
-    <td width="277"><input type="text" name="username" /></td>   
-  </tr>   
-  <tr>   
-    <td>密　码：</td>   
-    <td><input type="password" name="password" /></td>   
-  </tr>   
-  <tr>   
-    <td> </td>   
-    <td><input type="submit" value="进入聊天室" /> <input type="reset" value="取消"></td>   
-  </tr>   
-</table>   
-</form>   
-<p align="center">PHP方向 版权所有 copyright 2015</p>   
-</body>   
-</html> 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>AJAX聊天室</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <p id="login">
+            <div class="card" style="width: 25rem; padding: 20px; margin: auto">
+            <span style="text-align:center"><p1>LOGIN</p1></span>
+                <form action="chatindex.php" name="form1" method="post">
+                    <div class="form-group">
+                        <label>用户名:</label>
+                        <input type="text" required="required" class="form-control" name="username" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <label>密码:</label>
+                        <input type="password" required="required" class="form-control" placeholder="密码" name="password"/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </form>
+            </div>
+        </p>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+    </body>
+</html>
