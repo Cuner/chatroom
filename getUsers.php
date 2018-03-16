@@ -23,7 +23,6 @@ $result=$con->query($sql);
 
 while($row = $result->fetch_assoc())
  {
- 	var_dump($row);
  	$response [] = (object) [
  		'id' => $row['id'],
 		'username' => $row['username'],

@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS `chatinfo`;
 
 CREATE TABLE `chatinfo` (
   `chat_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `user_name` VARCHAR (20) NOT NULL,
   `IP` varchar(15) NOT NULL,
   `content` text NOT NULL,
   `createtime` varchar(30) NOT NULL,
@@ -44,4 +44,4 @@ CREATE TABLE `chatinfo` (
 
 /*Data for the table `chatinfo` */
 
-insert  into `chatinfo`(`chat_id`,`user_id`,`IP`,`content`,`createtime`) values (1,1,'::1','hello world','2017-Apr-Thu 09:11:1'),(2,2,'::1','hello?','2018-Apr-Thu 09:11:4'),(3,3,'::1','world','2017-Apr-Thu 09:13:2');
+insert  into `chatinfo`(`chat_id`,`user_name`,`IP`,`content`,`createtime`) values (1,'tobi','::1','hello world','2017-Apr-Thu 09:11:1'),(2,'cuner','::1','hello?','2018-Apr-Thu 09:11:4'),(3,'hoan','::1','world','2017-Apr-Thu 09:13:2');

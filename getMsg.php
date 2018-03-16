@@ -13,7 +13,7 @@ while($row = $result->fetch_assoc())
  {
  	$response [] = (object)[
  		'chat_id' => $row['chat_id'],
-        'user_id' => $row['user_id'],
+        'user_name' => $row['user_name'],
 		'IP' => $row['IP'],
 		'content' => $row['content'],
 		'createtime' => $row['createtime']
